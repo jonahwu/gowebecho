@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	cm "github.com/gowebecho/common"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"net/http"
@@ -24,7 +25,6 @@ var (
 //----------
 // Handlers
 //----------
-
 func createUser(c echo.Context) error {
 	u := &user{
 		ID: seq,
@@ -65,6 +65,7 @@ func toSleep(c echo.Context) error {
 	ist, _ := strconv.Atoi(sleeptime)
 	fmt.Println(sleeptime)
 	time.Sleep(time.Duration(ist) * time.Second)
+
 	return c.JSON(http.StatusOK, sleeptime)
 }
 
@@ -96,6 +97,11 @@ func Process(next echo.HandlerFunc) echo.HandlerFunc {
 */
 
 func main() {
+	cm.CC()
+	var a cm.RunData
+	var b cm.Util
+
+	//cm.
 	e := echo.New()
 
 	// Middleware
